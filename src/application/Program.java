@@ -1,5 +1,6 @@
 package application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import model.entities.Account;
@@ -24,13 +25,13 @@ public class Program {
 			double limit = sc.nextDouble();
 			Account account = new Account(number, holder, balance, limit);
 			
-			System.out.println("Enter amount for withdraw: ");
+			System.out.print("Enter amount for withdraw: ");
 			double withdraw = sc.nextDouble();
 			account.withdraw(withdraw);
 			System.out.println("New balance: " + account.getBalance());
 		}
-		catch(RuntimeException e) {
-			System.out.println("Unexpected error");
+		catch(InputMismatchException e) {
+			System.out.println("Input error.");
 		}
 		catch(DomainException e) {
 			System.out.println("Withdraw error: " + e.getMessage());
